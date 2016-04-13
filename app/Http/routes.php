@@ -10,5 +10,23 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group(['middlewareGroups' => ['web']], function () {
+	Route::get('/', 'PageController@home');
+	Route::get('about', 'PageController@about');
+	Route::post('/cards/new','CardsController@storeCard');
 
-Route::get('/', 'PageController@home');
+	Route::get('cards', 'CardsController@index');
+	Route::get('cards/{card}', 'CardsController@show');
+	Route::get('cards/{card}/delete', 'CardsController@delete');
+	Route::post('cards/{card}/notes','NotesController@store');
+
+	Route::get('notes/{note}/edit', 'NotesController@edit');
+
+	Route::patch('notes/{note}', 'NotesController@update');
+
+
+});
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

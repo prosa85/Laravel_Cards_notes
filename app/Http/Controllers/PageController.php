@@ -12,5 +12,11 @@ class PageController extends Controller
 	public function home() {
     $people = ['Pablo', 'David', 'Steph', 'Sophia'];
     return view('welcome', compact('people'));
-}
+
+
+	}
+	public function about() {
+		return view('about');
+	}
+
 }
